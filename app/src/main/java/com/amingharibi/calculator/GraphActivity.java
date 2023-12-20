@@ -33,7 +33,7 @@ public class GraphActivity extends AppCompatActivity {
         lineChart = findViewById(R.id.lineChart);
 
         // از کاربر دریافت تابع مثلثاتی
-        String userExpression = "sin(x^2)+cos(x^3)";
+        String userExpression = "sin(x^2)";
 
         // مقادیر x و y برای رسم نمودار
         float[] xValues = new float[200];
