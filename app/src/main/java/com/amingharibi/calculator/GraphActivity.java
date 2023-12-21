@@ -2,6 +2,10 @@ package com.amingharibi.calculator;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,17 +27,38 @@ import java.util.ArrayList;
 public class GraphActivity extends AppCompatActivity {
 
     private LineChart lineChart;
+    private Button draw;
+    private EditText formulaEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
+        formulaEditText = findViewById(R.id.graph_ET_formula);
+        draw = findViewById(R.id.graph_btn_draw);
+        //drawGraph("");
+
+
+        draw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String formula = String.valueOf(formulaEditText.getText());
+                drawGraph(formula);
+            }
+        });
+
+
+    }
+
+
+    public void drawGraph(String formula) {
+
 
         lineChart = findViewById(R.id.lineChart);
 
         // از کاربر دریافت تابع مثلثاتی
-        String userExpression = "sin(x^2)";
+        String userExpression = formula;
 
         // مقادیر x و y برای رسم نمودار
         float[] xValues = new float[200];
@@ -75,7 +100,7 @@ public class GraphActivity extends AppCompatActivity {
 
         // قرار دادن توضیحات نمودار```java
         Description description = new Description();
-        description.setText("نمودار تابع مثلثاتی");
+        description.setText("");
         lineChart.setDescription(description);
 
         // قرار دادن مجموعه داده‌ها در نمودار
@@ -86,6 +111,9 @@ public class GraphActivity extends AppCompatActivity {
 
         lineChart.setTouchEnabled(true);
         lineChart.setPinchZoom(true);
+
+
+
     }
 
     private ArrayList<Entry> getEntries(float[] xValues, float[] yValues) {
@@ -97,5 +125,6 @@ public class GraphActivity extends AppCompatActivity {
 
         return entries;
     }
+
 
 }

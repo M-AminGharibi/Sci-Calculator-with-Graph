@@ -8,23 +8,26 @@
 
 
     <ImageView
-        android:id="@+id/IVgraph"
+        android:id="@+id/main_iv_graph"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/IVcalcutale"
+        app:layout_constraintEnd_toStartOf="@+id/main_iv_calcutale"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 
     <ImageView
-        android:id="@+id/IVcalcutale"
+        android:id="@+id/main_iv_calcutale"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/main_iv_graph"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,15 +8,15 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    ImageView IVgraph , IVCalculate;
+    private ImageView IVgraph , IVCalculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        IVgraph = findViewById(R.id.IVgraph);
-        IVCalculate = findViewById(R.id.IVcalcutale);
+        IVgraph = findViewById(R.id.main_iv_graph);
+        IVCalculate = findViewById(R.id.main_iv_calcutale);
 
         IVgraph.setOnClickListener(new View.OnClickListener() {
             @Override
