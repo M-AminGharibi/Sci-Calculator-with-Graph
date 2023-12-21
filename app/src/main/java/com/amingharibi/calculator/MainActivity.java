@@ -15,9 +15,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //initialize the buttons
         IVgraph = findViewById(R.id.main_iv_graph);
         IVCalculate = findViewById(R.id.main_iv_calcutale);
 
+        //set On Click Listener for Graph Section
         IVgraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,10 +28,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //set On Click Listener for Calculate Section
         IVCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this , CalculateActivity.class);
+                startActivity(intent);
             }
         });
 

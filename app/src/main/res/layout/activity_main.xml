@@ -30,4 +30,5 @@
         app:layout_constraintStart_toEndOf="@+id/main_iv_graph"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
