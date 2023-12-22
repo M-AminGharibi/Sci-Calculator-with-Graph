@@ -31,4 +31,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 
+    <Button
+        android:id="@+id/main_btn_draw"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_draw_background"
+        android:text="Draw"
+        app:layout_constraintBottom_toBottomOf="@+id/main_iv_graph"
+        app:layout_constraintEnd_toEndOf="@+id/main_iv_graph"
+        app:layout_constraintStart_toStartOf="@+id/main_iv_graph"
+        app:layout_constraintTop_toTopOf="@+id/main_iv_graph" />
+
+    <Button
+        android:id="@+id/main_btn_calculate"
+        android:layout_width="125dp"
+        android:background="@drawable/btn_draw_background"
+        android:layout_height="wrap_content"
+        android:text="Calculate"
+        app:layout_constraintBottom_toBottomOf="@+id/main_iv_calcutale"
+        app:layout_constraintEnd_toEndOf="@+id/main_iv_calcutale"
+        app:layout_constraintStart_toStartOf="@+id/main_iv_calcutale"
+        app:layout_constraintTop_toTopOf="@+id/main_iv_calcutale" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
