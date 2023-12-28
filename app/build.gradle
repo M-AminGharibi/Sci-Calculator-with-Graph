@@ -5,7 +5,9 @@ plugins {
 android {
     namespace 'com.amingharibi.calculator'
     compileSdk 34
-
+    buildFeatures {
+        viewBinding true
+    }
     defaultConfig {
         applicationId "com.amingharibi.calculator"
         minSdk 28
@@ -15,6 +17,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {

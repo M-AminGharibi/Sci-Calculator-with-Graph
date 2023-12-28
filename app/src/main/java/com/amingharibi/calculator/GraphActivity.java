@@ -3,12 +3,10 @@ package com.amingharibi.calculator;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amingharibi.calculator.databinding.ActivityGraphBinding;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
@@ -26,38 +24,27 @@ import java.util.ArrayList;
 
 public class GraphActivity extends AppCompatActivity {
 
-    private LineChart lineChart;
-    private Button draw;
-    private EditText formulaEditText;
+    private ActivityGraphBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_graph);
+        binding = ActivityGraphBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        formulaEditText = findViewById(R.id.graph_ET_formula);
-        draw = findViewById(R.id.graph_btn_draw);
-        //drawGraph("");
-
-
-        draw.setOnClickListener(new View.OnClickListener() {
+        binding.graphBtnDraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String formula = String.valueOf(formulaEditText.getText());
+                String formula = binding.graphETFormula.getText().toString();
                 drawGraph(formula);
             }
         });
-
-
     }
 
-
     public void drawGraph(String formula) {
+        LineChart lineChart = binding.lineChart;
 
-
-        lineChart = findViewById(R.id.lineChart);
-
-        // از کاربر دریافت تابع مثلثاتی
+        // دریافت تابع وارد شده توسط کاربر
         String userExpression = formula;
 
         // مقادیر x و y برای رسم نمودار
@@ -72,21 +59,21 @@ public class GraphActivity extends AppCompatActivity {
             yValues[i] = (float) expression.calculate();
         }
 
-        // وارد کردن داده‌ها به مجموعه نقاط
+        // تنظیمات مربوط به دیتاست نمودار خطی
         LineDataSet dataSet = new LineDataSet(getEntries(xValues, yValues), userExpression);
         dataSet.setColor(Color.RED);
         dataSet.setValueTextColor(Color.BLACK);
         dataSet.setLineWidth(2f);
 
-        // تنظیم محدوده محور y برای نمایش اعداد منفی
+        // تنظیمات محور y
         YAxis leftAxis = lineChart.getAxisLeft();
-        leftAxis.setAxisMinimum(-1f); // محدوده محور y را از -1 تا 1 تنظیم می‌کند
+        leftAxis.setAxisMinimum(-1f);
 
-        // تنظیم محور x برای نمایش اعداد منفی
+        // تنظیمات محور x
         XAxis xAxis = lineChart.getXAxis();
-        xAxis.setAxisMinimum(-10f); // محدوده محور x را از -10 تا 10 تنظیم می‌کند
+        xAxis.setAxisMinimum(-10f);
 
-        // تنظیم برچسب‌های محور X بر اساس مقادیر منفی
+        // فرمت‌بندی مقادیر محور x برای اعداد منفی
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getAxisLabel(float value, AxisBase axis) {
@@ -95,27 +82,23 @@ public class GraphActivity extends AppCompatActivity {
             }
         });
 
-        // ایجاد مجموعه داده‌ها
+        // ایجاد دیتای نمودار خطی
         LineData lineData = new LineData(dataSet);
 
-        // قرار دادن توضیحات نمودار```java
+        // تنظیم توضیحات برای نمودار
         Description description = new Description();
         description.setText("");
         lineChart.setDescription(description);
 
-        // قرار دادن مجموعه داده‌ها در نمودار
+        // قرار دادن دیتا در نمودار
         lineChart.setData(lineData);
-
-        // بروزرسانی نمودار
         lineChart.invalidate();
 
         lineChart.setTouchEnabled(true);
         lineChart.setPinchZoom(true);
-
-
-
     }
 
+    // تولید لیست داده‌ها برای نمودار خطی
     private ArrayList<Entry> getEntries(float[] xValues, float[] yValues) {
         ArrayList<Entry> entries = new ArrayList<>();
 
@@ -125,6 +108,4 @@ public class GraphActivity extends AppCompatActivity {
 
         return entries;
     }
-
-
 }

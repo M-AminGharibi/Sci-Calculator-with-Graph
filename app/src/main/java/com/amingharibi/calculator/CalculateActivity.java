@@ -2,48 +2,35 @@ package com.amingharibi.calculator;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.mariuszgromada.math.mxparser.Expression;
 
+import com.amingharibi.calculator.databinding.ActivityCalculateBinding;
+
 public class CalculateActivity extends AppCompatActivity {
+    private ActivityCalculateBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calculate);
-        Button btn_calculate = findViewById(R.id.btn_calculate);
-        EditText et_formula = findViewById(R.id.calculate_et_formula);
-        TextView resultTextView = findViewById(R.id.resultTextView);
+        binding = ActivityCalculateBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-
-
-
-
-
-        btn_calculate.setOnClickListener(new View.OnClickListener() {
+        binding.btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String formula = String.valueOf(et_formula.getText());
+                String formula = binding.calculateEtFormula.getText().toString();
                 double result = calculate(formula);
-                resultTextView.setText(String.valueOf(result));
+                binding.resultTextView.setText(String.valueOf(result));
             }
         });
-
-
     }
 
     public double calculate(String formula) {
-
         String inputExpression = formula;
         Expression expression = new Expression(inputExpression);
-        double result = expression.calculate();
-        return result;
-
-
+        return expression.calculate();
     }
 }
