@@ -1,9 +1,16 @@
 package com.amingharibi.calculator;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amingharibi.calculator.databinding.ActivityGraphBinding;
@@ -26,11 +33,31 @@ public class GraphActivity extends AppCompatActivity {
 
     private ActivityGraphBinding binding;
 
+//    ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+//        @Override
+//        public void onActivityResult(ActivityResult o) {
+//            if (o.getResultCode() == Activity.RESULT_OK && o.getData() != null) {
+//                String formula = o.getData().getStringExtra("formula");
+//                binding.graphETFormula.setText(formula);
+//            }
+//        }
+//    });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityGraphBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("formula")) {
+
+            String formula = intent.getStringExtra("formula");
+
+            binding.graphETFormula.setText(formula);
+        }
+
 
         binding.graphBtnDraw.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +66,21 @@ public class GraphActivity extends AppCompatActivity {
                 drawGraph(formula);
             }
         });
+
+
+
+
     }
+
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == 1001 && resultCode == Activity.RESULT_OK && data != null) {
+//            String formula = data.getStringExtra("formula");
+//            binding.graphETFormula.setText(formula);
+//        }
+//    }
 
     public void drawGraph(String formula) {
         LineChart lineChart = binding.lineChart;

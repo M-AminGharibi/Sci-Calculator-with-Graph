@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_shade_3"
     tools:context=".MainActivity">
 
 
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/btn_draw_background"
         android:text="Draw"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/main_iv_graph"
         app:layout_constraintEnd_toEndOf="@+id/main_iv_graph"
         app:layout_constraintStart_toStartOf="@+id/main_iv_graph"
@@ -48,6 +50,7 @@
         android:background="@drawable/btn_draw_background"
         android:layout_height="wrap_content"
         android:text="Calculate"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/main_iv_calcutale"
         app:layout_constraintEnd_toEndOf="@+id/main_iv_calcutale"
         app:layout_constraintStart_toStartOf="@+id/main_iv_calcutale"
